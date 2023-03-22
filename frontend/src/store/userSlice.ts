@@ -1,25 +1,25 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-export interface CounterState {
+export interface UserState {
   username: string;
   email: string;
 }
 
-const initialState: CounterState = {
+const initialState: UserState = {
   username: "",
-  email: ""
+  email: "",
 };
 
-export const counterSlice = createSlice({
-  name: "counter",
+export const userSlice = createSlice({
+  name: "user",
   initialState,
   reducers: {
-    logout: (state: CounterState) => {
+    logout: (state: UserState) => {
       state.username = "";
       state.email = "";
     },
-    setUserInfo(state: CounterState, { payload }: PayloadAction<CounterState>) {
+    setUserInfo(state: UserState, { payload }: PayloadAction<UserState>) {
       state.username = payload.username;
       state.email = payload.email;
     },
@@ -27,6 +27,6 @@ export const counterSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { logout, setUserInfo } = counterSlice.actions;
+export const { logout, setUserInfo } = userSlice.actions;
 
-export default counterSlice.reducer;
+export default userSlice.reducer;

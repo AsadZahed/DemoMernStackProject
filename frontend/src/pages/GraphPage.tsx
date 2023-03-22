@@ -7,7 +7,7 @@ import styles from "../styles/NotesPage.module.css";
 interface NotesPageProps {
   loggedInUser: User | null;
 }
-
+//Parent component for Graph Screen, if user is not logged in shows public screen.
 const GraphPage = ({ loggedInUser }: NotesPageProps) => {
   return (
     <Container className={styles.notesPage}>

@@ -20,13 +20,13 @@ const NavBar = ({
     <Navbar bg="primary" variant="dark" expand="sm" sticky="top">
       <Container>
         <Navbar.Brand as={Link} to="/">
-          Cool Notes App
+          Notes App
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="main-navbar" />
         <Navbar.Collapse id="main-navbar">
           <Nav>
             <Nav.Link as={Link} to="/graph">
-              Graph
+              Charts
             </Nav.Link>
           </Nav>
           <Nav className="ms-auto">

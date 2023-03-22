@@ -8,7 +8,7 @@ import styleUtils from "../styles/utils.module.css";
 import { useState } from "react";
 import { ConflictError } from "../errors/http_errors";
 import { useDispatch } from "react-redux";
-import { setUserInfo } from "../features/counter/counterSlice";
+import { setUserInfo } from "../store/userSlice";
 
 interface SignUpModalProps {
   onDismiss: () => void;

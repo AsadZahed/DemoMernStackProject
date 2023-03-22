@@ -17,6 +17,7 @@ function App() {
   const [showSignUpModal, setShowSignUpModal] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
 
+  //get logged in user from backend, to authorize for further api call.
   useEffect(() => {
     async function fetchLoggedInUser() {
       try {
