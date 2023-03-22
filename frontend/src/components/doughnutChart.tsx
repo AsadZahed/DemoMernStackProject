@@ -44,8 +44,8 @@ const GraphPage = () => {
 
   return (
     <Doughnut
-      width={500}
-      height={500}
+      width={350}
+      height={350}
       data={data}
       options={{ maintainAspectRatio: false }}
     />

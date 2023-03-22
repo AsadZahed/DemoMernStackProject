@@ -1,5 +1,6 @@
 import BarChart from "./barChart";
 import DoughnutChart from "./doughnutChart";
+import { VerticalBarChart } from "./verticalBarChart";
 
 const GraphMainSection = () => {
   return (
@@ -12,15 +13,15 @@ const GraphMainSection = () => {
         style={{
           display: "flex",
           flexDirection: "row",
-          justifyContent: "center",
+          justifyContent: "space-between",
           alignItems: "center",
         }}
       >
-        <div style={{ width: "600px", height: "600px" }}>
+        <div>
           <BarChart />
         </div>
-        <div style={{ width: "600px", height: "600px" }}>
-          <BarChart />
+        <div>
+          <VerticalBarChart />
         </div>
       </div>
     </div>
