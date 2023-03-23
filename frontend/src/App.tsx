@@ -2,14 +2,11 @@ import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { Route, Routes } from "react-router";
 import { BrowserRouter } from "react-router-dom";
-import LoginModal from "./components/LoginModal";
-import NavBar from "./components/NavBar";
-import SignUpModal from "./components/SignUpModal";
+import { NavBar, LoginModal, SignUpModal } from "./components/organisms";
 import { User } from "./models/user";
 import * as NotesApi from "./network/notes_api";
-import NotesPage from "./pages/NotesPage";
-import NotFoundPage from "./pages/NotFoundPage";
-import GraphPage from "./pages/GraphPage";
+import { NotesPage, NotFoundPage, GraphPage } from "./pages";
+
 import styles from "./styles/App.module.css";
 
 function App() {

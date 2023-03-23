@@ -9,7 +9,7 @@ import {
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 
-export const options = {
+ const options = {
   responsive: true,
   plugins: {
     legend: {
@@ -24,7 +24,7 @@ export const options = {
 
 const labels = ["January", "February", "March", "April", "May", "June", "July"];
 
-export const data = {
+ const data = {
   labels,
   datasets: [
     {
@@ -39,7 +39,7 @@ export const data = {
     },
   ],
 };
-const BarChart = () => {
+export const BarChart = () => {
   ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -52,4 +52,3 @@ const BarChart = () => {
   return <Bar width={350} height={350} options={options} data={data} />;
 };
 
-export default BarChart;

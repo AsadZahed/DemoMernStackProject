@@ -9,7 +9,7 @@ import {
   Title,
 } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
-export const data = {
+const data = {
   labels: ["Expenses", "Income", "Savings", "Investments"],
   datasets: [
     {
@@ -31,7 +31,7 @@ export const data = {
     },
   ],
 };
-const GraphPage = () => {
+export const DoughnutChart = () => {
   ChartJS.register(
     ArcElement,
     Tooltip,
@@ -51,5 +51,3 @@ const GraphPage = () => {
     />
   );
 };
-
-export default GraphPage;
