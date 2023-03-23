@@ -1,8 +1,6 @@
-import BarChart from "./barChart";
-import DoughnutChart from "./doughnutChart";
-import { VerticalBarChart } from "./verticalBarChart";
+import { DoughnutChart, VerticalBarChart, BarChart } from "../atoms";
 
-const GraphMainSection = () => {
+export const GraphMainSection = () => {
   return (
     <div>
       <p>Overview</p>
@@ -27,5 +25,3 @@ const GraphMainSection = () => {
     </div>
   );
 };
-
-export default GraphMainSection;

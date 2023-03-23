@@ -1,14 +1,14 @@
 import { Button, Navbar } from "react-bootstrap";
-import * as NotesApi from "../network/notes_api";
+import * as NotesApi from "../../network/notes_api";
 import { useSelector, useDispatch } from "react-redux";
-import type { RootState } from "../../src/store/store";
-import { logout } from "../store/userSlice";
+import type { RootState } from "../../../src/store/store";
+import { logout } from "../../store/userSlice";
 
 interface NavBarLoggedInViewProps {
   onLogoutSuccessful: () => void;
 }
 
-const NavBarLoggedInView = ({
+export const NavBarLoggedInView = ({
   onLogoutSuccessful,
 }: NavBarLoggedInViewProps) => {
   const username = useSelector((state: RootState) => state.user.username);
@@ -33,4 +33,4 @@ const NavBarLoggedInView = ({
   );
 };
 
-export default NavBarLoggedInView;
+
