@@ -1,4 +1,6 @@
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import { User } from "../models/user";
 import { LoginCredentials } from "../network/notes_api";
 import * as NotesApi from "../network/notes_api";
@@ -18,11 +20,24 @@ interface LoginModalProps {
 const LoginModal = ({ onDismiss, onLoginSuccessful }: LoginModalProps) => {
   const [errorText, setErrorText] = useState<string | null>(null);
 
+  //yup schema for login credentials validation
+  const loginSchema = yup
+    .object({
+      username: yup.string().required("Username is required"),
+      password: yup.string().required("Password must be entered"),
+    })
+    .required();
+
   const {
+    control,
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
-  } = useForm<LoginCredentials>();
+    formState: { errors, isSubmitting, isValid, isDirty },
+  } = useForm<LoginCredentials>({
+    defaultValues: { username: "", password: "" },
+    resolver: yupResolver(loginSchema),
+    mode: "onChange",
+  });
 
   const dispatch = useDispatch();
 
@@ -61,7 +76,6 @@ const LoginModal = ({ onDismiss, onLoginSuccessful }: LoginModalProps) => {
             type="text"
             placeholder="Username"
             register={register}
-            registerOptions={{ required: "Required" }}
             error={errors.username}
           />
           <TextInputField
@@ -70,7 +84,6 @@ const LoginModal = ({ onDismiss, onLoginSuccessful }: LoginModalProps) => {
             type="password"
             placeholder="Password"
             register={register}
-            registerOptions={{ required: "Required" }}
             error={errors.password}
           />
           <Button

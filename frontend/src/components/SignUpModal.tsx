@@ -1,4 +1,6 @@
 import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { User } from "../models/user";
 import { SignUpCredentials } from "../network/notes_api";
 import * as NotesApi from "../network/notes_api";
@@ -18,12 +20,37 @@ interface SignUpModalProps {
 const SignUpModal = ({ onDismiss, onSignUpSuccessful }: SignUpModalProps) => {
   const [errorText, setErrorText] = useState<string | null>(null);
   const dispatch = useDispatch();
+  const signupSchema = yup
+    .object({
+      username: yup.string().required("Username is required."),
+      email: yup
+        .string()
+        .email("Please enter valid Email address.")
+        .required("Email is required."),
+      password: yup
+        .string()
+        .matches(
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+          "Must contain 8 Characters, One Uppercase, One Lowercase, One Number & One Special Case Character."
+        )
+        .required("Password is required."),
+      confirmPassword: yup
+        .string()
+        .required("This is required.")
+        .oneOf([yup.ref("password"), ""], "Passwords doesnt match."),
+    })
+    .required();
 
   const {
+    control,
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
-  } = useForm<SignUpCredentials>();
+    formState: { errors, isSubmitting, isValid, isDirty },
+  } = useForm<SignUpCredentials>({
+    defaultValues: { username: "", password: "", confirmPassword: "" },
+    resolver: yupResolver(signupSchema),
+    mode: "onChange",
+  });
 
   async function onSubmit(credentials: SignUpCredentials) {
     try {
@@ -60,7 +87,6 @@ const SignUpModal = ({ onDismiss, onSignUpSuccessful }: SignUpModalProps) => {
             type="text"
             placeholder="Username"
             register={register}
-            registerOptions={{ required: "Required" }}
             error={errors.username}
           />
           <TextInputField
@@ -69,7 +95,6 @@ const SignUpModal = ({ onDismiss, onSignUpSuccessful }: SignUpModalProps) => {
             type="email"
             placeholder="Email"
             register={register}
-            registerOptions={{ required: "Required" }}
             error={errors.email}
           />
           <TextInputField
@@ -78,8 +103,15 @@ const SignUpModal = ({ onDismiss, onSignUpSuccessful }: SignUpModalProps) => {
             type="password"
             placeholder="Password"
             register={register}
-            registerOptions={{ required: "Required" }}
             error={errors.password}
+          />
+          <TextInputField
+            name="confirmPassword"
+            label="Confirm Password"
+            type="password"
+            placeholder="Re-enter Password"
+            register={register}
+            error={errors.confirmPassword}
           />
           <Button
             type="submit"
