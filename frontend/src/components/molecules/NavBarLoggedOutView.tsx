@@ -5,7 +5,7 @@ interface NavBarLoggedOutViewProps {
     onLoginClicked: () => void,
 }
 
-const NavBarLoggedOutView = ({ onSignUpClicked, onLoginClicked }: NavBarLoggedOutViewProps) => {
+export const NavBarLoggedOutView = ({ onSignUpClicked, onLoginClicked }: NavBarLoggedOutViewProps) => {
     return (
         <>
             <Button onClick={onSignUpClicked}>Sign Up</Button>
@@ -13,5 +13,3 @@ const NavBarLoggedOutView = ({ onSignUpClicked, onLoginClicked }: NavBarLoggedOu
         </>
     );
 }
-
-export default NavBarLoggedOutView;
